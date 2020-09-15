@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header class=\"ion-no-border\">\n    <ion-toolbar color=\"dark\">\n\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"/\" color=\"warning\"></ion-back-button>\n        </ion-buttons>\n\n        <ion-title>{{lista.titulo}}</ion-title>\n\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding\" color=\"medium\">\n\n    <ion-list>\n        <ion-item color=\"medium\">\n            <ion-label position=\"floating\" class=\"closed\">Nuevo Item</ion-label>\n            <ion-input type=\"text\" [(ngModel)]=\"nombreItem\" (keyup.enter)=\"agregarItem()\"></ion-input>\n        </ion-item>\n    </ion-list>\n\n    <ion-list>\n        <ion-list-header color=\"dark\">\n            <ion-label>Tareas por hacer</ion-label>\n        </ion-list-header>\n        <ion-item *ngFor=\"let item of lista.items\" class=\"animated fadeInDown\">\n            <ion-checkbox slot=\"start\" color=\"success\" [(ngModel)]=\"item.completado\" (ionChange)=\"changeCheck(item)\"></ion-checkbox>\n            <ion-label>{{item.descripcion}}</ion-label>\n        </ion-item>\n    </ion-list>\n\n\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header class=\"ion-no-border\">\n    <ion-toolbar color=\"dark\">\n\n        <ion-buttons slot=\"start\">\n            <ion-back-button defaultHref=\"/\" color=\"warning\"></ion-back-button>\n        </ion-buttons>\n\n        <ion-title>{{lista.titulo}}</ion-title>\n\n    </ion-toolbar>\n</ion-header>\n\n<ion-content class=\"ion-padding\" color=\"medium\">\n\n    <!-- <ion-list *ngIf=\"!lista.fechaCompletada\"> -->\n    <ion-list>\n        <ion-item color=\"medium\">\n            <ion-label position=\"floating\" class=\"closed\">Nuevo Item</ion-label>\n            <ion-input type=\"text\" [(ngModel)]=\"nombreItem\" (keyup.enter)=\"agregarItem()\"></ion-input>\n        </ion-item>\n    </ion-list>\n\n    <ion-list>\n\n        <ion-list-header color=\"dark\" *ngIf=\"lista.items.length > 0\">\n            <ion-label>Tareas por hacer</ion-label>\n        </ion-list-header>\n\n        <ion-item-sliding *ngFor=\"let item of lista.items; index as i\" class=\"animated fadeInDown\">\n\n            <ion-item>\n                <ion-checkbox slot=\"start\" color=\"success\" [(ngModel)]=\"item.completado\" (ionChange)=\"changeCheck(item)\"></ion-checkbox>\n                <ion-label>{{item.descripcion}}</ion-label>\n            </ion-item>\n\n            <ion-item-options side=\"end\">\n                <ion-item-option color=\"danger\" (click)=\"eliminarItem(i)\">\n                    <!-- <ion-icon slot=\"icon-only\" name=\"trash-outline\"></ion-icon> -->\n                    <ion-icon slot=\"start\" name=\"trash-outline\"></ion-icon>\n                    delete\n                </ion-item-option>\n            </ion-item-options>\n\n        </ion-item-sliding>\n\n    </ion-list>\n\n\n</ion-content>\n\n<!-- \n<ion-item-sliding>\n    <ion-item-options side=\"start\">\n        <ion-item-option (click)=\"favorite(item)\">Favorite</ion-item-option>\n        <ion-item-option color=\"danger\" (click)=\"share(item)\">Share</ion-item-option>\n    </ion-item-options>\n\n    <ion-item>\n        <ion-label>Item Options</ion-label>\n    </ion-item>\n\n    <ion-item-options side=\"end\">\n        <ion-item-option (click)=\"unread(item)\">Unread</ion-item-option>\n    </ion-item-options>\n</ion-item-sliding>\n -->\n\n<!-- \n<ion-item-sliding>\n    <ion-item-options side=\"start\">\n        <ion-item-option color=\"danger\" expandable>\n            Delete\n        </ion-item-option>\n    </ion-item-options>\n\n    <ion-item>\n        <ion-label>Expandable Options</ion-label>\n    </ion-item>\n\n    <ion-item-options side=\"end\">\n        <ion-item-option color=\"tertiary\" expandable>\n            Archive\n        </ion-item-option>\n    </ion-item-options>\n</ion-item-sliding>\n -->");
 
 /***/ }),
 
@@ -151,7 +151,7 @@ let AgregarPage = class AgregarPage {
         this.activatedRoute = activatedRoute;
         const listaId = this.activatedRoute.snapshot.paramMap.get('listaId');
         this.lista = this.todoService.obtenerLista(listaId);
-        console.log(this.lista);
+        // console.log(this.lista)
     }
     agregarItem() {
         if (this.nombreItem.length === 0) {
@@ -174,6 +174,11 @@ let AgregarPage = class AgregarPage {
             this.lista.fechaCompletada = null;
             this.lista.terminada = false;
         }
+        this.todoService.guardarStorage();
+    }
+    eliminarItem(index) {
+        // console.log(index);
+        this.lista.items.splice(index, 1);
         this.todoService.guardarStorage();
     }
 };

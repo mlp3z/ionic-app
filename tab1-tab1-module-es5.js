@@ -22,7 +22,7 @@
       /* harmony default export */
 
 
-      __webpack_exports__["default"] = "<ion-header [translucent]=\"true\" class=\"ion-no-border\">\n    <ion-toolbar color=\"dark\">\n        <ion-title>\n            Pendientes\n        </ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\" detail color=\"medium\">\n\n    <ion-list>\n        <ion-item *ngFor=\"let lista of todoService.listas\" detail color=\"light\" (click)=\"verLista(lista)\">\n            <ion-label>\n                <ion-icon slot=\"start\" name=\"terminal\"></ion-icon>\n                {{lista.titulo}}\n            </ion-label>\n        </ion-item>\n    </ion-list>\n\n\n    <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\">\n        <ion-fab-button color=\"warning\" (click)=\"agregarLista()\">\n            <ion-icon name=\"add\"></ion-icon>\n        </ion-fab-button>\n    </ion-fab>\n\n</ion-content>";
+      __webpack_exports__["default"] = "<ion-header [translucent]=\"true\" class=\"ion-no-border\">\n    <ion-toolbar color=\"dark\">\n        <ion-title>\n            Pendientes\n        </ion-title>\n    </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\" detail color=\"medium\">\n\n    <app-listas [tabName]=\"'tab1'\"></app-listas>\n\n    <!-- esto lo ponemos en un componente para poder reutilizarlo\n    <ion-list>\n        <ion-item *ngFor=\"let lista of todoService.listas\" detail color=\"light\" (click)=\"verLista(lista)\" class=\"animated fadeInDown\">\n            <ion-label>\n                <ion-icon slot=\"start\" name=\"clipboard-outline\" color=\"warning\"></ion-icon>\n                {{lista.titulo}}\n            </ion-label>\n            <ion-note slot=\"end\" color=\"tertiary\">{{lista.items.length}} items</ion-note>\n        </ion-item>\n    </ion-list>\n    -->\n\n    <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\">\n        <ion-fab-button color=\"warning\" (click)=\"agregarLista()\">\n            <ion-icon name=\"add\"></ion-icon>\n        </ion-fab-button>\n    </ion-fab>\n\n</ion-content>";
       /***/
     },
 
@@ -158,13 +158,21 @@
       var _tab1_routing_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
       /*! ./tab1-routing.module */
       "./src/app/pages/tab1/tab1-routing.module.ts");
+      /* harmony import */
+
+
+      var src_app_components_components_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+      /*! src/app/components/components.module */
+      "./src/app/components/components.module.ts"); // import { ListasComponent } from 'src/app/components/listas/listas.component';
+
 
       var Tab1PageModule = function Tab1PageModule() {
         _classCallCheck(this, Tab1PageModule);
       };
 
       Tab1PageModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
-        imports: [_ionic_angular__WEBPACK_IMPORTED_MODULE_1__["IonicModule"], _angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"], _tab1_routing_module__WEBPACK_IMPORTED_MODULE_6__["Tab1PageRoutingModule"]],
+        imports: [_ionic_angular__WEBPACK_IMPORTED_MODULE_1__["IonicModule"], _angular_common__WEBPACK_IMPORTED_MODULE_3__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"], _tab1_routing_module__WEBPACK_IMPORTED_MODULE_6__["Tab1PageRoutingModule"], src_app_components_components_module__WEBPACK_IMPORTED_MODULE_7__["ComponentsModule"] //de esta forma podemos importa un modulo de componentes en los 2 tabs
+        ],
         declarations: [_tab1_page__WEBPACK_IMPORTED_MODULE_5__["Tab1Page"]]
       })], Tab1PageModule);
       /***/
@@ -277,14 +285,12 @@
                         buttons: [{
                           text: 'Cancelar',
                           role: 'cancel',
-                          handler: function handler() {
-                            console.log('cancelado');
+                          handler: function handler() {// console.log('cancelado');
                           }
                         }, {
                           text: 'Crear',
                           handler: function handler(data) {
-                            console.log('crear', data);
-
+                            // console.log('crear',data);
                             if (data.titulo.length === 0) {
                               return;
                             }

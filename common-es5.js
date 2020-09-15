@@ -664,6 +664,175 @@
     },
 
     /***/
+    "./node_modules/raw-loader/dist/cjs.js!./src/app/components/listas/listas.component.html":
+    /*!***********************************************************************************************!*\
+      !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/components/listas/listas.component.html ***!
+      \***********************************************************************************************/
+
+    /*! exports provided: default */
+
+    /***/
+    function node_modulesRawLoaderDistCjsJsSrcAppComponentsListasListasComponentHtml(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony default export */
+
+
+      __webpack_exports__["default"] = "<ion-list>\n\n    <ion-item-sliding *ngFor=\"let lista of todoService.listas; index as i\" class=\"animated fadeInDown\">\n\n        <ion-item detail color=\"light\" (click)=\"verLista(lista)\">\n\n            <ion-label>\n                <ion-icon *ngIf=\"tabName=='tab1'\" slot=\"start\" name=\"clipboard-outline\" color=\"warning\"></ion-icon>\n                <ion-icon *ngIf=\"tabName=='tab2'\" slot=\"start\" name=\"shield-checkmark-outline\" color=\"success\"></ion-icon>\n                {{lista.titulo}}\n            </ion-label>\n\n            <ion-note *ngIf=\"tabName=='tab1'\" slot=\"end\" color=\"tertiary\">\n                {{lista.items.length}} items\n            </ion-note>\n            <ion-note *ngIf=\"tabName=='tab2'\" slot=\"end\" color=\"tertiary\">\n                Fecha Fin: {{lista.fechaCompletada | date: 'dd/MM/yyyy' }}\n            </ion-note>\n\n        </ion-item>\n\n        <ion-item-options side=\"end\">\n            <ion-item-option color=\"danger\" (click)=\"eliminarLista(lista)\">\n                <!-- <ion-icon slot=\"icon-only\" name=\"trash-outline\"></ion-icon> -->\n                <ion-icon slot=\"start\" name=\"trash-outline\"></ion-icon>\n                delete\n            </ion-item-option>\n        </ion-item-options>\n\n    </ion-item-sliding>\n\n</ion-list>";
+      /***/
+    },
+
+    /***/
+    "./src/app/components/components.module.ts":
+    /*!*************************************************!*\
+      !*** ./src/app/components/components.module.ts ***!
+      \*************************************************/
+
+    /*! exports provided: ComponentsModule */
+
+    /***/
+    function srcAppComponentsComponentsModuleTs(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "ComponentsModule", function () {
+        return ComponentsModule;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "./node_modules/tslib/tslib.es6.js");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! @angular/core */
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+      /* harmony import */
+
+
+      var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! @angular/common */
+      "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
+      /* harmony import */
+
+
+      var _listas_listas_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! ./listas/listas.component */
+      "./src/app/components/listas/listas.component.ts");
+
+      var ComponentsModule = function ComponentsModule() {
+        _classCallCheck(this, ComponentsModule);
+      };
+
+      ComponentsModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+        declarations: [_listas_listas_component__WEBPACK_IMPORTED_MODULE_3__["ListasComponent"]],
+        exports: [_listas_listas_component__WEBPACK_IMPORTED_MODULE_3__["ListasComponent"]],
+        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"]]
+      })], ComponentsModule);
+      /***/
+    },
+
+    /***/
+    "./src/app/components/listas/listas.component.ts":
+    /*!*******************************************************!*\
+      !*** ./src/app/components/listas/listas.component.ts ***!
+      \*******************************************************/
+
+    /*! exports provided: ListasComponent */
+
+    /***/
+    function srcAppComponentsListasListasComponentTs(module, __webpack_exports__, __webpack_require__) {
+      "use strict";
+
+      __webpack_require__.r(__webpack_exports__);
+      /* harmony export (binding) */
+
+
+      __webpack_require__.d(__webpack_exports__, "ListasComponent", function () {
+        return ListasComponent;
+      });
+      /* harmony import */
+
+
+      var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+      /*! tslib */
+      "./node_modules/tslib/tslib.es6.js");
+      /* harmony import */
+
+
+      var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+      /*! @angular/core */
+      "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+      /* harmony import */
+
+
+      var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+      /*! @angular/router */
+      "./node_modules/@angular/router/__ivy_ngcc__/fesm2015/router.js");
+      /* harmony import */
+
+
+      var src_app_services_todo_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+      /*! src/app/services/todo.service */
+      "./src/app/services/todo.service.ts");
+
+      var ListasComponent = /*#__PURE__*/function () {
+        function ListasComponent(todoService, router) {
+          _classCallCheck(this, ListasComponent);
+
+          this.todoService = todoService;
+          this.router = router; // console.log(this.tabName);
+        }
+
+        _createClass(ListasComponent, [{
+          key: "ngOnInit",
+          value: function ngOnInit() {}
+        }, {
+          key: "verLista",
+          value: function verLista(lista) {
+            // console.log(lista)
+            this.router.navigateByUrl("tabs/".concat(this.tabName, "/agregar/").concat(lista.id));
+          }
+        }, {
+          key: "eliminarLista",
+          value: function eliminarLista(lista) {
+            this.todoService.eliminarLista(lista);
+          }
+        }]);
+
+        return ListasComponent;
+      }();
+
+      ListasComponent.ctorParameters = function () {
+        return [{
+          type: src_app_services_todo_service__WEBPACK_IMPORTED_MODULE_3__["TodoService"]
+        }, {
+          type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]
+        }];
+      };
+
+      ListasComponent.propDecorators = {
+        tabName: [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"]
+        }]
+      };
+      ListasComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'app-listas',
+        template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
+        /*! raw-loader!./listas.component.html */
+        "./node_modules/raw-loader/dist/cjs.js!./src/app/components/listas/listas.component.html"))["default"]
+      })], ListasComponent);
+      /***/
+    },
+
+    /***/
     "./src/app/models/lista.model.ts":
     /*!***************************************!*\
       !*** ./src/app/models/lista.model.ts ***!
@@ -773,6 +942,14 @@
               return x.id === id;
             });
             return listaSearch;
+          }
+        }, {
+          key: "eliminarLista",
+          value: function eliminarLista(lista) {
+            this.listas = this.listas.filter(function (x) {
+              return x.id != lista.id;
+            });
+            this.guardarStorage();
           }
         }]);
 
