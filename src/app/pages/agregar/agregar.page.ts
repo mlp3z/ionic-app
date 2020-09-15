@@ -15,7 +15,7 @@ export class AgregarPage{
     nombreItem:string;
 
     constructor(
-        public todoService:TodoService,
+        private todoService:TodoService,
         private activatedRoute:ActivatedRoute
     ) { 
 
@@ -23,7 +23,7 @@ export class AgregarPage{
 
         this.lista = this.todoService.obtenerLista(listaId);
 
-        console.log(this.lista)
+        // console.log(this.lista)
     }
 
     agregarItem(){
@@ -60,6 +60,14 @@ export class AgregarPage{
 
         this.todoService.guardarStorage();
     }
+
+
+    eliminarItem(index:number){
+        // console.log(index);
+        this.lista.items.splice(index,1);
+        this.todoService.guardarStorage();
+    }
+
 
 
 }

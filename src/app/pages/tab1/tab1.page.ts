@@ -41,13 +41,13 @@ export class Tab1Page {
                     text: 'Cancelar',
                     role:'cancel',
                     handler: ()=>{
-                        console.log('cancelado');
+                        // console.log('cancelado');
                     }
                 },
                 {
                     text: 'Crear',
                     handler: (data)=>{
-                        console.log('crear',data);
+                        // console.log('crear',data);
                         if(data.titulo.length===0){
                             return;
                         }

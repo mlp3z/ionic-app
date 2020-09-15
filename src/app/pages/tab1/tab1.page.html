@@ -8,15 +8,19 @@
 
 <ion-content [fullscreen]="true" detail color="medium">
 
+    <app-listas [tabName]="'tab1'"></app-listas>
+
+    <!-- esto lo ponemos en un componente para poder reutilizarlo
     <ion-list>
-        <ion-item *ngFor="let lista of todoService.listas" detail color="light" (click)="verLista(lista)">
+        <ion-item *ngFor="let lista of todoService.listas" detail color="light" (click)="verLista(lista)" class="animated fadeInDown">
             <ion-label>
-                <ion-icon slot="start" name="terminal"></ion-icon>
+                <ion-icon slot="start" name="clipboard-outline" color="warning"></ion-icon>
                 {{lista.titulo}}
             </ion-label>
+            <ion-note slot="end" color="tertiary">{{lista.items.length}} items</ion-note>
         </ion-item>
     </ion-list>
-
+    -->
 
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
         <ion-fab-button color="warning" (click)="agregarLista()">

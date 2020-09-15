@@ -9,9 +9,9 @@ import { AlertController, NavController, Platform } from '@ionic/angular';
 export class TabsPage {
 
     constructor(public navCtrl: NavController, private alertCtrl: AlertController, private platform: Platform) {
- 
+
     }
-    
+
     async showPlatform() {
         let text = 'I run on: ' + this.platform.platforms();
         const alert = await this.alertCtrl.create({
@@ -21,7 +21,7 @@ export class TabsPage {
             buttons: ['OK']
         });
         alert.present();
-      }
+    }
 
 
 }

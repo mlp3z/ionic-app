@@ -8,13 +8,17 @@
 
 <ion-content [fullscreen]="true" detail color="medium">
 
+    <app-listas [tabName]="'tab2'"></app-listas>
+
+    <!-- esto lo ponemos en un componente para poder reutilizarlo
     <ion-list>
         <ion-item *ngFor="let lista of todoService.listas" detail color="light">
             <ion-label>
-                <ion-icon slot="start" name="shield-checkmark"></ion-icon>
+                <ion-icon slot="start" name="shield-checkmark-outline" color="success"></ion-icon>
                 {{lista.titulo}}
             </ion-label>
         </ion-item>
     </ion-list>
+     -->
 
 </ion-content>
