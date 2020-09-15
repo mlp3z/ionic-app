@@ -1,0 +1,27 @@
+<ion-header [translucent]="true" class="ion-no-border">
+    <ion-toolbar color="dark">
+        <ion-title>
+            Pendientes
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" detail color="medium">
+
+    <ion-list>
+        <ion-item *ngFor="let lista of todoService.listas" detail color="light" (click)="verLista(lista)">
+            <ion-label>
+                <ion-icon slot="start" name="terminal"></ion-icon>
+                {{lista.titulo}}
+            </ion-label>
+        </ion-item>
+    </ion-list>
+
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color="warning" (click)="agregarLista()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>
