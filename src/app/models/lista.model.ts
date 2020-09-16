@@ -16,6 +16,7 @@ export class Lista{
         this.titulo = titulo;
         this.fechaCreacion= new Date();
         this.fechaCompletada= null;
+        this.terminada = false;
         this.items = [];
         
     }

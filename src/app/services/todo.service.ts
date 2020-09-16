@@ -40,6 +40,7 @@ export class TodoService {
         return nuevaLista.id;
     }
 
+
     obtenerLista(id:string|number){
 
         id = Number(id);
@@ -56,6 +57,19 @@ export class TodoService {
         this.guardarStorage();
     }
     
+
+    editarLista(id:string|number,titulo:string){
+        // console.log(id,titulo);
+
+        let listaSearch = this.listas.find(x => x.id===id)
+        // console.log(listaSearch)
+
+        listaSearch.titulo = titulo;
+        // console.log(listaSearch)
+
+        this.guardarStorage();
+
+    }
 
 
 

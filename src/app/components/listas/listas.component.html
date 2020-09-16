@@ -1,17 +1,31 @@
-<ion-list>
+<ion-list (click)="viewChilds()">
 
-    <ion-item-sliding *ngFor="let lista of todoService.listas; index as i" class="animated fadeInDown">
+    <ion-item-sliding *ngFor="let lista of todoService.listas | filtro:tabName ; index as i" class="animated fadeInDown">
+
+        <!-- #slidingItem (click)="slidingItem.close()" -->
 
         <ion-item detail color="light" (click)="verLista(lista)">
 
             <ion-label>
-                <ion-icon *ngIf="tabName=='tab1'" slot="start" name="clipboard-outline" color="warning"></ion-icon>
-                <ion-icon *ngIf="tabName=='tab2'" slot="start" name="shield-checkmark-outline" color="success"></ion-icon>
+                <ion-icon *ngIf="tabName=='tab1'" slot="start" name="clipboard-outline" color="warning">
+
+                </ion-icon>
+                <ion-icon *ngIf="tabName=='tab2'" slot="start" name="shield-checkmark-outline" color="success">
+
+                </ion-icon>
                 {{lista.titulo}}
+
+                <ion-progress-bar *ngIf="tabName=='tab1'" color="tertiary" value="{{lista | countItems:'completadas_percent'}}">
+                </ion-progress-bar>
+                <!-- <ion-label *ngIf="tabName=='tab1'" color="tertiary">
+                    Completadas: {{ lista | countItems:'completadas_count'}} Pendientes {{ lista | countItems:'pendientes_count'}}
+                </ion-label> -->
             </ion-label>
 
+
+
             <ion-note *ngIf="tabName=='tab1'" slot="end" color="tertiary">
-                {{lista.items.length}} items
+                {{ lista | countItems:'completadas_count'}} de {{lista.items.length}} items
             </ion-note>
             <ion-note *ngIf="tabName=='tab2'" slot="end" color="tertiary">
                 Fecha Fin: {{lista.fechaCompletada | date: 'dd/MM/yyyy' }}
@@ -27,6 +41,18 @@
             </ion-item-option>
         </ion-item-options>
 
+        <ion-item-options side="start">
+            <ion-item-option color="warning" (click)="editarLista(lista)">
+                <ion-icon name="create-outline"></ion-icon>
+                edit
+            </ion-item-option>
+        </ion-item-options>
+
     </ion-item-sliding>
 
 </ion-list>
+
+
+<!-- <ion-label>Label 1</ion-label>
+<ion-label>Label 2</ion-label>
+<ion-label>Label 3</ion-label> -->
